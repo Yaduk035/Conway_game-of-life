@@ -48,7 +48,6 @@ function App() {
       }
       return rows;
     });
-    console.log(grid);
   }, [RowLength, ColLength, cellSize]);
 
   const runningRef = useRef(running);
