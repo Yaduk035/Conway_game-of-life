@@ -20,13 +20,13 @@ const defaultColWidth = 30;
 function App() {
   const [colwidth, setColwidth] = useState(30);
 
-  const RowLength = colwidth;
+  const RowLength = colwidth - colwidth / 2;
   const ColLength = colwidth;
   const resolution = 1000;
   const cellSize = resolution / ColLength;
   const [running, setRunning] = useState(false);
   const runSpeed = 1000;
-  const [speed, setSpeed] = useState(1000);
+  const [speed, setSpeed] = useState(410);
 
   // console.log(running);
 

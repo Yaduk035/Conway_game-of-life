@@ -22,6 +22,7 @@ export default function DiscreteSlider({ cellWidth, running }) {
           <Slider
             disabled={running}
             aria-label="Temperature"
+            defaultValue={30}
             getAriaValueText={valuetext}
             valueLabelDisplay="auto"
             step={1}

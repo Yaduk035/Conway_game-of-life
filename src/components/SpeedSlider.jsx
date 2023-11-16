@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { ElectricBolt } from "@mui/icons-material";
 
 function valuetext(value) {
@@ -21,7 +21,7 @@ export default function DiscreteSlider({ speedControl, speed }) {
         <Grid item xs>
           <Slider
             aria-label="Temperature"
-            defaultValue={30}
+            defaultValue={160}
             getAriaValueText={valuetext}
             valueLabelDisplay="auto"
             step={10}
