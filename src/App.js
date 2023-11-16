@@ -2,8 +2,9 @@ import React, { useCallback, useRef, useState, useEffect } from "react";
 import { produce } from "immer";
 import { Button, Container } from "@mui/material";
 import ControlPanel from "./components/ControlPanel";
-import InputSlider from "./components/Slider";
+import InputSlider from "./components/SpeedSlider";
 import "./components/homepage.css";
+import Header from "./components/Header";
 
 const operations = [
   [-1, -1],
@@ -15,17 +16,19 @@ const operations = [
   [1, 0],
   [1, 1],
 ];
-
+const defaultColWidth = 30;
 function App() {
-  const RowLength = 20;
-  const ColLength = 30;
+  const [colwidth, setColwidth] = useState(30);
+
+  const RowLength = colwidth;
+  const ColLength = colwidth;
   const resolution = 1000;
   const cellSize = resolution / ColLength;
   const [running, setRunning] = useState(false);
   const runSpeed = 1000;
   const [speed, setSpeed] = useState(1000);
 
-  // console.log(speed);
+  // console.log(running);
 
   const [grid, setGrid] = useState(() => {
     const rows = [];
@@ -45,12 +48,13 @@ function App() {
       }
       return rows;
     });
+    console.log(grid);
   }, [RowLength, ColLength, cellSize]);
 
   const runningRef = useRef(running);
   runningRef.current = running;
 
-  const simulation = useCallback(() => {
+  const simulation = () => {
     if (!runningRef.current) {
       return;
     }
@@ -81,7 +85,7 @@ function App() {
       });
     });
     //  setTimeout(simulation, speed);
-  }, []);
+  };
 
   useEffect(() => {
     if (running) {
@@ -128,17 +132,27 @@ function App() {
     });
   };
 
-  const speedControl = (e) => {
-    setSpeed(e.target.value);
+  const speedControl = (value) => {
+    setSpeed(value);
+  };
+
+  const cellWidthControl = (value) => {
+    setColwidth(value);
   };
 
   return (
     <>
+      <Header />
       <Container>
         <br />
         <br />
         <br />
-        <ControlPanel speedControl={setSpeed} speed={speed} />
+        <ControlPanel
+          speedControl={speedControl}
+          speed={speed}
+          cellWidth={setColwidth}
+          running={running}
+        />
         <Button
           variant="outlined"
           onClick={() => {
