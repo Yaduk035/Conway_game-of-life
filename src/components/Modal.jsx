@@ -4,17 +4,32 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import img1 from "../images/Game_of_life_animated_glider.gif";
+import img2 from "../images/82px-Game_of_life_boat.svg.png";
+import img3 from "../images/98px-Game_of_life_beehive.svg.png";
+import img4 from "../images/98px-Game_of_life_loaf.svg.png";
+import img5 from "../images/Game_of_life_block_with_border.svg.png";
+import img6 from "../images/Game_of_life_flower.svg.png";
+import img7 from "../images/img7.gif";
+import img8 from "../images/img8.gif";
+import img9 from "../images/img9.gif";
+import img10 from "../images/img10.gif";
+import img11 from "../images/img11.gif";
+import img12 from "../images/img12.gif";
+import img13 from "../images/img13.gif";
+import img14 from "../images/img14.gif";
+import { Grid } from "@mui/material";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 600,
+  width: 800,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  overFlow: "scroll",
 };
 
 export default function BasicModal({ openModal, handleModal }) {
@@ -67,7 +82,44 @@ export default function BasicModal({ openModal, handleModal }) {
             interesting ways – something that people have now been doing for
             over 50 years.
           </Typography>
-          <img src={img1} alt="" />
+          <br />
+          <Typography id="modal-modal-title" variant="h4" component="h2">
+            Patterns
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <Box>
+              <Grid>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Still lifes
+                </Typography>
+                <Grid item></Grid>
+                <Grid
+                  item
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <img src={img2} alt="" style={{ margin: "10px" }} />
+                  <img src={img3} alt="" style={{ margin: "10px" }} />
+                  <img src={img4} alt="" style={{ margin: "10px" }} />
+                  <img src={img5} alt="" style={{ margin: "10px" }} />
+                  <img src={img6} alt="" style={{ margin: "10px" }} />
+                </Grid>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Oscillators & Spaceships
+                </Typography>
+                <Grid
+                  item
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <img src={img1} alt="" style={{ margin: "5px" }} />
+                  <img src={img7} alt="" style={{ margin: "5px" }} />
+                  <img src={img10} alt="" style={{ margin: "5px" }} />
+                  <img src={img11} alt="" style={{ margin: "5px" }} />
+                  <img src={img12} alt="" style={{ margin: "5px" }} />
+                  <img src={img13} alt="" style={{ margin: "5px" }} />
+                </Grid>
+              </Grid>
+            </Box>
+          </Typography>
         </Box>
       </Modal>
     </div>
