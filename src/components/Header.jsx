@@ -12,12 +12,16 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import DarkmodeButton from "./DarkmodeButton";
 import { GridView } from "@mui/icons-material";
+import Modal from "./Modal";
+import { HelpOutline } from "@mui/icons-material";
+import { Grid } from "@mui/material";
 
 const pages = ["Products", "Pricing", "Blog"];
 
 function ResponsiveAppBar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [openModal, setOpenModal] = React.useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -28,6 +32,10 @@ function ResponsiveAppBar(props) {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleModal = (value) => {
+    setOpenModal(value);
   };
 
   const handleCloseUserMenu = () => {
@@ -133,6 +141,23 @@ function ResponsiveAppBar(props) {
               display: { xs: "none", md: "flex", justifyContent: "end" },
             }}
           >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginRight: "20px",
+              }}
+            >
+              <span onClick={() => handleModal(true)}>
+                <HelpOutline
+                  style={{
+                    fontSize: "1.8rem",
+                    color: "gray",
+                    cursor: "pointer",
+                  }}
+                />
+              </span>
+            </div>
             <DarkmodeButton
               nightmode={props.nightmode}
               currentmode={props.currentmode}
@@ -142,6 +167,7 @@ function ResponsiveAppBar(props) {
 
           <Box sx={{ flexGrow: 0 }}></Box>
         </Toolbar>
+        <Modal openModal={openModal} handleModal={handleModal} />
       </Container>
     </AppBar>
   );
