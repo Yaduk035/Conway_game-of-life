@@ -10,29 +10,26 @@ import img4 from "../images/98px-Game_of_life_loaf.svg.png";
 import img5 from "../images/Game_of_life_block_with_border.svg.png";
 import img6 from "../images/Game_of_life_flower.svg.png";
 import img7 from "../images/img7.gif";
-import img8 from "../images/img8.gif";
-import img9 from "../images/img9.gif";
 import img10 from "../images/img10.gif";
 import img11 from "../images/img11.gif";
 import img12 from "../images/img12.gif";
 import img13 from "../images/img13.gif";
-import img14 from "../images/img14.gif";
 import { Grid } from "@mui/material";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 800,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-  overFlow: "scroll",
-};
-
-export default function BasicModal({ openModal, handleModal }) {
+export default function BasicModal({ openModal, handleModal, currentmode }) {
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 800,
+    bgcolor: currentmode ? "black" : "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+    overFlow: "scroll",
+    color: currentmode ? "white" : "black",
+  };
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -43,7 +40,7 @@ export default function BasicModal({ openModal, handleModal }) {
       setOpen(openModal);
     }
   }, [openModal]);
-
+  console.log(currentmode);
   return (
     <div>
       {/* <Button onClick={handleOpen}>Open modal</Button> */}
@@ -54,7 +51,7 @@ export default function BasicModal({ openModal, handleModal }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h4" component="h2">
+          <Typography id="modal-modal-title" variant="h5" component="h2">
             What is John Conway's game of life?
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -81,18 +78,23 @@ export default function BasicModal({ openModal, handleModal }) {
             rules. The goal of the game is to find patterns that evolve in
             interesting ways – something that people have now been doing for
             over 50 years.
+            <br />
+            <Typography id="modal-modal-title" variant="h5" component="h2">
+              How to play game of life?
+            </Typography>
+            Select a probablity value from the randomize slider and click on the
+            randomize button to generate random live cells. Click on the start
+            button to start the simulation. The user can control the cells per
+            row and column and the speed of the simulation by adjusting the
+            slider.
           </Typography>
           <br />
-          <Typography id="modal-modal-title" variant="h4" component="h2">
-            Patterns
+          <Typography id="modal-modal-title" variant="h5" component="h2">
+            Patterns(Still life and oscillating)
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <Box>
               <Grid>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Still lifes
-                </Typography>
-                <Grid item></Grid>
                 <Grid
                   item
                   style={{ display: "flex", justifyContent: "center" }}
@@ -103,9 +105,6 @@ export default function BasicModal({ openModal, handleModal }) {
                   <img src={img5} alt="" style={{ margin: "10px" }} />
                   <img src={img6} alt="" style={{ margin: "10px" }} />
                 </Grid>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Oscillators & Spaceships
-                </Typography>
                 <Grid
                   item
                   style={{ display: "flex", justifyContent: "center" }}

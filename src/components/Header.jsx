@@ -151,7 +151,7 @@ function ResponsiveAppBar(props) {
               <span onClick={() => handleModal(true)}>
                 <HelpOutline
                   style={{
-                    fontSize: "1.8rem",
+                    fontSize: "1.9rem",
                     color: "gray",
                     cursor: "pointer",
                   }}
@@ -167,7 +167,11 @@ function ResponsiveAppBar(props) {
 
           <Box sx={{ flexGrow: 0 }}></Box>
         </Toolbar>
-        <Modal openModal={openModal} handleModal={handleModal} />
+        <Modal
+          openModal={openModal}
+          handleModal={handleModal}
+          currentmode={props.currentmode}
+        />
       </Container>
     </AppBar>
   );

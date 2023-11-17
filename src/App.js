@@ -161,7 +161,6 @@ function App() {
   const setRandomizevalue = (value) => {
     setRanValue(value);
   };
-  console.log(ranValue);
 
   return (
     <>
