@@ -15,7 +15,7 @@ import { GridView } from "@mui/icons-material";
 
 const pages = ["Products", "Pricing", "Blog"];
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -42,7 +42,7 @@ function ResponsiveAppBar() {
         boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
       }}
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" className="day">
         <Toolbar disableGutters>
           <GridView
             sx={{
@@ -130,9 +130,11 @@ function ResponsiveAppBar() {
               display: { xs: "none", md: "flex", justifyContent: "end" },
             }}
           >
-            <Button sx={{ my: 2, color: "white", display: "block" }}>
-              <DarkmodeButton />
-            </Button>
+            <DarkmodeButton
+              nightmode={props.nightmode}
+              currentmode={props.currentmode}
+            />
+            {/* <Button sx={{ my: 2, color: "white", display: "block" }}></Button> */}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}></Box>

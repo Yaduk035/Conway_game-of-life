@@ -19,6 +19,8 @@ const operations = [
 const defaultColWidth = 30;
 function App() {
   const [colwidth, setColwidth] = useState(30);
+  const [hovered, setHovered] = useState(false);
+  const [nightmode, setNightmode] = useState(false);
 
   const RowLength = colwidth - colwidth / 2;
   const ColLength = colwidth;
@@ -27,6 +29,7 @@ function App() {
   const [running, setRunning] = useState(false);
   const runSpeed = 1000;
   const [speed, setSpeed] = useState(410);
+  const [ranValue, setRanValue] = useState(6);
 
   // console.log(running);
 
@@ -103,7 +106,11 @@ function App() {
       for (let i = 0; i < RowLength; i++) {
         rows.push(
           Array.from(Array(ColLength), () =>
-            Math.floor(Math.random() * 10) > 6 ? 1 : 0
+            ranValue === 1
+              ? 1
+              : Math.floor(Math.random() * 10) >= ranValue
+              ? 1
+              : 0
           )
         );
       }
@@ -131,6 +138,14 @@ function App() {
     });
   };
 
+  const startButton = () => {
+    setRunning((prev) => !prev);
+    if (!running) {
+      runningRef.current = true;
+      simulation();
+    }
+  };
+
   const speedControl = (value) => {
     setSpeed(value);
   };
@@ -139,83 +154,117 @@ function App() {
     setColwidth(value);
   };
 
+  const toggleNightmode = (value) => {
+    setNightmode(value);
+  };
+
+  const setRandomizevalue = (value) => {
+    setRanValue(value);
+  };
+  console.log(ranValue);
+
   return (
     <>
-      <Header />
-      <Container>
-        <br />
-        <br />
-        <br />
-        <ControlPanel
-          speedControl={speedControl}
-          speed={speed}
-          cellWidth={setColwidth}
-          running={running}
-        />
-        <Button
-          variant="outlined"
-          onClick={() => {
-            setRunning((prev) => !prev);
-            if (!running) {
-              runningRef.current = true;
-              simulation();
-            }
-          }}
-        >
-          {running ? "Stop" : "Start"}
-        </Button>
-        <Button variant="outlined" onClick={randomize}>
-          Randomize
-        </Button>
-        <Button variant="outlined" onClick={clearGrid}>
-          Clear
-        </Button>
-        <Button variant="outlined" onClick={populateGrid}>
-          Populate
-        </Button>
-        <div>
-          <label>Speed</label>
-          <input
-            onChange={(e) => setSpeed(e.target.value)}
-            type="number"
-            value={speed}
-            name=""
-            id=""
-          />
-          <p>{speed}</p>
-        </div>
-        <div
-          className="grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: `repeat(${ColLength},${cellSize}px)`,
-            justifyContent: "center",
-          }}
-        >
-          {grid.map((rows, i) =>
-            rows.map((col, j) => (
-              <div
-                key={`${i}-${j}`}
-                style={{
-                  width: cellSize,
-                  height: cellSize,
-                  border: "1px solid grey",
-                  borderRadius: "4px",
-                  backgroundColor: grid[i][j] ? "black" : undefined,
-                  cursor: "pointer",
-                  boxShadow: "0 0.35em 0.7em rgba(17,17, 17, 0.5)",
-                }}
-                onClick={() => {
-                  const newGrid = produce(grid, (gridCopy) => {
-                    gridCopy[i][j] = grid[i][j] ? 0 : 1;
-                  });
-                  setGrid(newGrid);
-                }}
-              />
-            ))
-          )}
-        </div>
-      </Container>
+      <div className={!nightmode ? "light-mode" : "night-mode"}>
+        <Header nightmode={toggleNightmode} currentmode={nightmode} />
+        <Container>
+          <br />
+          <br />
+          <br />
+          <div
+            className="controls-div"
+            style={{
+              backgroundImage: nightmode
+                ? "linear-gradient(rgb(58, 5, 5), rgb(70, 69, 69)"
+                : "linear-gradient(rgb(250, 196, 196), rgb(226, 161, 161)",
+            }}
+          >
+            <ControlPanel
+              speedControl={speedControl}
+              speed={speed}
+              cellWidth={setColwidth}
+              running={running}
+              currentmode={nightmode}
+              ranValue={setRandomizevalue}
+              randomizeButton={randomize}
+              clearGrid={clearGrid}
+              startButton={startButton}
+            />
+            <Button
+              variant="outlined"
+              onClick={() => {
+                setRunning((prev) => !prev);
+                if (!running) {
+                  runningRef.current = true;
+                  simulation();
+                }
+              }}
+            >
+              {running ? "Stop" : "Start"}
+            </Button>
+            <Button variant="outlined" onClick={randomize}>
+              Randomize
+            </Button>
+            <Button variant="outlined" onClick={clearGrid}>
+              Clear
+            </Button>
+            <Button variant="outlined" onClick={populateGrid}>
+              Populate
+            </Button>
+            <div>
+              <label>Speed</label>
+              <span>{speed}</span>
+            </div>
+          </div>
+          <br />
+          <br />
+          <div
+            className="grid"
+            style={{
+              gridTemplateColumns: `repeat(${ColLength},${cellSize + 2}px)`,
+              backgroundImage: nightmode
+                ? "linear-gradient(rgb(58, 5, 5), rgb(70, 69, 69)"
+                : "linear-gradient(rgb(250, 196, 196), rgb(226, 161, 161)",
+            }}
+          >
+            {grid.map((rows, i) =>
+              rows.map((col, j) => (
+                <div
+                  key={`${i}-${j}`}
+                  className="cell"
+                  style={{
+                    width: cellSize,
+                    height: cellSize,
+                    backgroundColor: grid[i][j]
+                      ? !nightmode
+                        ? "rgba(17, 17, 17, 0.9)"
+                        : "rgba(200, 200, 200, 0.9)"
+                      : undefined,
+                    transform: grid[i][j] ? "scale(1.1)" : "scale(0.95)",
+                    zIndex: grid[i][j] ? 2 : 1,
+                    transition:
+                      grid[i][j] && speed < 100
+                        ? "all 0.000001s"
+                        : grid[i][j]
+                        ? "all 0.09s"
+                        : "all 0s",
+                    // cursor: "pointer",
+                    // boxShadow: "0 0.35em 0.7em rgba(17,17, 17, 0.5)",
+                  }}
+                  // onMouseEnter={() => setHovered(true)}
+                  // onMouseLeave={() => setHovered(false)}
+                  onClick={() => {
+                    const newGrid = produce(grid, (gridCopy) => {
+                      gridCopy[i][j] = grid[i][j] ? 0 : 1;
+                    });
+                    setGrid(newGrid);
+                  }}
+                />
+              ))
+            )}
+          </div>
+        </Container>
+      </div>
     </>
   );
 }

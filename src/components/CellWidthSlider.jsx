@@ -8,7 +8,7 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function DiscreteSlider({ cellWidth, running }) {
+export default function DiscreteSlider({ cellWidth, running, currentmode }) {
   return (
     <Box sx={{ width: 300 }}>
       {/* <Typography>
@@ -16,10 +16,11 @@ export default function DiscreteSlider({ cellWidth, running }) {
       </Typography> */}
       <Grid container spacing={2} alignItems="center">
         <Grid item>
-          <Grid3x3 />
+          <Grid3x3 style={{ color: currentmode ? "wheat" : "" }} />
         </Grid>
         <Grid item xs>
           <Slider
+            style={{ color: currentmode ? "wheat" : "" }}
             disabled={running}
             aria-label="Temperature"
             defaultValue={30}
@@ -28,7 +29,7 @@ export default function DiscreteSlider({ cellWidth, running }) {
             step={1}
             marks
             min={20}
-            max={35}
+            max={40}
             onChange={(e) => {
               cellWidth(e.target.value);
               // console.log(invertedValue * 10);

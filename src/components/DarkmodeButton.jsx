@@ -52,27 +52,12 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-export default function DarkmodeButton() {
+export default function DarkmodeButton({ nightmode, currentmode }) {
   const [darkmode, setDarkmode] = React.useState();
 
-  //   React.useEffect(() => {
-  //     if (theme === "dark") {
-  //       setDarkmode(true);
-  //     } else {
-  //       setDarkmode(false);
-  //     }
-  //     console.log(theme);
-  //   }, [theme]);
-
-  const handleDarkModeToggle = (e) => {
-    if (darkmode === "dark") {
-      setDarkmode("light");
-    } else {
-      setDarkmode("dark");
-    }
-    // setDarkmode((prev) => !prev);
+  const handleDarkModeToggle = () => {
+    nightmode(!currentmode);
   };
-  React.useEffect(() => {}, [handleDarkModeToggle]);
   return (
     <FormGroup>
       <FormControlLabel
@@ -80,7 +65,7 @@ export default function DarkmodeButton() {
           <MaterialUISwitch
             sx={{ m: 1 }}
             onChange={handleDarkModeToggle} // Handle toggle action
-            checked={darkmode === "dark" ? true : false}
+            checked={currentmode}
           />
         }
         // label="Darkmode"

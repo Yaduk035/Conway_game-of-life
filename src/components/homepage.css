@@ -1,6 +1,38 @@
+.light-mode {
+  background-image: linear-gradient(rgb(236, 161, 161), gray);
+}
+.night-mode {
+  background-image: linear-gradient(rgb(58, 5, 5), rgb(70, 69, 69));
+}
 .grid {
   padding-top: 40px;
   padding-bottom: 40px;
   border-radius: 10px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  max-width: 1800px;
+  overflow: hidden;
+  justify-content: center;
+  display: grid;
+  background-image: linear-gradient(rgb(219, 213, 213), white);
+}
+
+.cell {
+  border: 1px solid gray;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  box-shadow: 0 0.35em 0.7em rgba(17, 17, 17, 0.5);
+  margin: 2px;
+}
+.cell-hovered {
+  border: 1px solid gray;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  box-shadow: 0 0.35em 0.7em rgba(17, 17, 17, 0.5);
+  background-color: gray;
+  translate: (1.1);
+}
+.controls-div {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 1);
+  padding: 20px;
+  border-radius: 10px;
 }

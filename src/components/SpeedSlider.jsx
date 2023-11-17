@@ -8,7 +8,7 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function DiscreteSlider({ speedControl, speed }) {
+export default function DiscreteSlider({ speedControl, currentmode }) {
   return (
     <Box sx={{ width: 300 }}>
       {/* <Typography>
@@ -16,10 +16,11 @@ export default function DiscreteSlider({ speedControl, speed }) {
       </Typography> */}
       <Grid container spacing={2} alignItems="center">
         <Grid item>
-          <ElectricBolt />
+          <ElectricBolt style={{ color: currentmode ? "wheat" : "" }} />
         </Grid>
         <Grid item xs>
           <Slider
+            style={{ color: currentmode ? "wheat" : "" }}
             aria-label="Temperature"
             defaultValue={160}
             getAriaValueText={valuetext}
