@@ -6,37 +6,63 @@ import { Button, Stack, Grid, Box } from "@mui/material";
 const ControlPanel = (props) => {
   return (
     <>
-      <Box sx={{ width: "300px" }}>
-        <SpeedSlider
-          speedControl={props.speedControl}
-          speed={props.speed}
-          currentmode={props.currentmode}
-        />
-        <CellSlider
-          cellWidth={props.cellWidth}
-          running={props.running}
-          currentmode={props.currentmode}
-        />
-        <RandomizeSlider
-          randomizeButton={props.randomizeButton}
-          ranValue={props.ranValue}
-          currentmode={props.currentmode}
-        />
+      <div>
+        <h1
+          style={{
+            textAlign: "center",
+            fontFamily: "monospace",
+            fontWeight: "bolder",
+            color: props.currentmode ? "wheat" : "rgb(80, 80, 80)",
+          }}
+        >
+          Controls
+        </h1>
+      </div>
+      <Box>
+        <Grid container justifyContent="center">
+          <Grid item style={{ marginLeft: "10px", marginRight: "10px" }}>
+            <SpeedSlider
+              speedControl={props.speedControl}
+              speed={props.speed}
+              currentmode={props.currentmode}
+            />
+          </Grid>
+          <Grid style={{ marginLeft: "10px", marginRight: "10px" }}>
+            <CellSlider
+              cellWidth={props.cellWidth}
+              running={props.running}
+              currentmode={props.currentmode}
+            />
+          </Grid>
+          <Grid style={{ marginLeft: "10px", marginRight: "10px" }}>
+            <RandomizeSlider
+              randomizeButton={props.randomizeButton}
+              ranValue={props.ranValue}
+              currentmode={props.currentmode}
+            />
+          </Grid>
+        </Grid>
         <Grid container justifyContent="center">
           <Stack direction="row" spacing={2}>
             <Button
-              variant="contained"
+              size="large"
+              variant="outlined"
               color="error"
               onClick={props.startButton}
+              style={{ color: props.currentmode ? "wheat" : "rgb(50,50,50)" }}
             >
-              {props.running ? "Stop" : "Start"}
+              <span style={{ fontWeight: "bolder" }}>
+                {props.running ? "Stop" : "Start"}
+              </span>
             </Button>
             <Button
+              size="large"
               variant="outlined"
               color="success"
               onClick={props.clearGrid}
+              style={{ color: props.currentmode ? "wheat" : "rgb(50,50,50)" }}
             >
-              Clear
+              <span style={{ fontWeight: "bolder" }}>Clear</span>
             </Button>
           </Stack>
         </Grid>

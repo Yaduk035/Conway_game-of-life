@@ -14,7 +14,7 @@ export default function DiscreteSlider({ speedControl, currentmode }) {
       {/* <Typography>
         <span style={{ fontFamily: "monospace" }}>Speed</span>
       </Typography> */}
-      <Grid container spacing={2} alignItems="center">
+      <Grid container spacing={0} alignItems="center">
         <Grid item>
           <ElectricBolt style={{ color: currentmode ? "wheat" : "" }} />
         </Grid>

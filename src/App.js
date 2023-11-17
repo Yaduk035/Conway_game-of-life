@@ -170,13 +170,17 @@ function App() {
         <Container>
           <br />
           <br />
-          <br />
           <div
             className="controls-div"
             style={{
-              backgroundImage: nightmode
-                ? "linear-gradient(rgb(58, 5, 5), rgb(70, 69, 69)"
-                : "linear-gradient(rgb(250, 196, 196), rgb(226, 161, 161)",
+              boxShadow: nightmode
+                ? "0 5px 25px rgba(150,150,150,0.5)"
+                : "0 10px 25px rgba(0,0,0,0.5)",
+
+              backgroundColor: "transparent",
+              // backgroundImage: nightmode
+              //   ? "linear-gradient(rgb(58, 5, 5), rgb(70, 69, 69)"
+              //   : "linear-gradient(rgb(250, 196, 196), rgb(226, 161, 161)",
             }}
           >
             <ControlPanel
@@ -190,41 +194,15 @@ function App() {
               clearGrid={clearGrid}
               startButton={startButton}
             />
-            <Button
-              variant="outlined"
-              onClick={() => {
-                setRunning((prev) => !prev);
-                if (!running) {
-                  runningRef.current = true;
-                  simulation();
-                }
-              }}
-            >
-              {running ? "Stop" : "Start"}
-            </Button>
-            <Button variant="outlined" onClick={randomize}>
-              Randomize
-            </Button>
-            <Button variant="outlined" onClick={clearGrid}>
-              Clear
-            </Button>
-            <Button variant="outlined" onClick={populateGrid}>
-              Populate
-            </Button>
-            <div>
-              <label>Speed</label>
-              <span>{speed}</span>
-            </div>
           </div>
-          <br />
           <br />
           <div
             className="grid"
             style={{
               gridTemplateColumns: `repeat(${ColLength},${cellSize + 2}px)`,
-              backgroundImage: nightmode
-                ? "linear-gradient(rgb(58, 5, 5), rgb(70, 69, 69)"
-                : "linear-gradient(rgb(250, 196, 196), rgb(226, 161, 161)",
+              // backgroundImage: nightmode
+              //   ? "linear-gradient(rgb(32, 50, 68), rgb(68, 63, 63)"
+              //   : "linear-gradient(rgb(199, 189, 189), white)",
             }}
           >
             {grid.map((rows, i) =>
@@ -235,6 +213,7 @@ function App() {
                   style={{
                     width: cellSize,
                     height: cellSize,
+                    // border: nightmode ? "1px solid wheat" : "1px solid gray",
                     backgroundColor: grid[i][j]
                       ? !nightmode
                         ? "rgba(17, 17, 17, 0.9)"
@@ -264,6 +243,8 @@ function App() {
             )}
           </div>
         </Container>
+        <br />
+        <br />
       </div>
     </>
   );

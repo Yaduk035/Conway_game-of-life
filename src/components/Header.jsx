@@ -39,11 +39,14 @@ function ResponsiveAppBar(props) {
       position="static"
       sx={{
         backgroundColor: "rgba(17,17,17,0.8)",
-        boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
+        boxShadow: props.currentmode
+          ? "0 5px 25px rgba(150,150,150,0.5)"
+          : "0 10px 25px rgba(0,0,0,0.5)",
+        borderRadius: "0px 0px 10px 10px",
       }}
     >
-      <Container maxWidth="xl" className="day">
-        <Toolbar disableGutters>
+      <Container maxWidth="xl" className="day" style={{ padding: "10px" }}>
+        <Toolbar>
           <GridView
             sx={{
               display: { xs: "none", md: "flex" },

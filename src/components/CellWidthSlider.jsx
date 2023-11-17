@@ -14,7 +14,7 @@ export default function DiscreteSlider({ cellWidth, running, currentmode }) {
       {/* <Typography>
         <span style={{ fontFamily: "monospace" }}>Speed</span>
       </Typography> */}
-      <Grid container spacing={2} alignItems="center">
+      <Grid container spacing={0} alignItems="center">
         <Grid item>
           <Grid3x3 style={{ color: currentmode ? "wheat" : "" }} />
         </Grid>
@@ -29,7 +29,7 @@ export default function DiscreteSlider({ cellWidth, running, currentmode }) {
             step={1}
             marks
             min={20}
-            max={40}
+            max={45}
             onChange={(e) => {
               cellWidth(e.target.value);
               // console.log(invertedValue * 10);

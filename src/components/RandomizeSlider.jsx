@@ -2,8 +2,8 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { Grid, Typography } from "@mui/material";
-import { Grid3x3 } from "@mui/icons-material";
-import { Button, Stack } from "@mui/material";
+import { Shuffle } from "@mui/icons-material";
+import { Button } from "@mui/material";
 
 function valuetext(value) {
   return `${value}°C`;
@@ -20,9 +20,9 @@ export default function DiscreteSlider({
         {/* <Typography>
         <span style={{ fontFamily: "monospace" }}>Speed</span>
       </Typography> */}
-        <Grid container spacing={2} alignItems="center">
+        <Grid container spacing={0} alignItems="center">
           <Grid item>
-            <Grid3x3 style={{ color: currentmode ? "wheat" : "" }} />
+            <Shuffle style={{ color: currentmode ? "wheat" : "" }} />
           </Grid>
           <Grid item xs>
             <Slider
@@ -42,8 +42,16 @@ export default function DiscreteSlider({
             />
           </Grid>
           <Grid item>
-            <Button size="small" onClick={randomizeButton} variant="contained">
-              Randomize
+            <Button
+              size="small"
+              onClick={randomizeButton}
+              variant="outlined"
+              style={{
+                color: currentmode ? "wheat" : "rgb(50,50,50)",
+                marginLeft: "10px",
+              }}
+            >
+              <span style={{ fontWeight: "bolder" }}>Randomize</span>
             </Button>
           </Grid>
         </Grid>
