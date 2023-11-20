@@ -11,9 +11,6 @@ function valuetext(value) {
 export default function DiscreteSlider({ speedControl, currentmode }) {
   return (
     <Box sx={{ width: 300 }}>
-      {/* <Typography>
-        <span style={{ fontFamily: "monospace" }}>Speed</span>
-      </Typography> */}
       <Grid container spacing={0} alignItems="center">
         <Grid item>
           <ElectricBolt style={{ color: currentmode ? "wheat" : "" }} />
@@ -25,9 +22,10 @@ export default function DiscreteSlider({ speedControl, currentmode }) {
             defaultValue={160}
             getAriaValueText={valuetext}
             valueLabelDisplay="auto"
-            step={10}
+            valueLabelFormat={(value) => `Speed: x${value / 100}`}
+            step={5}
             marks
-            min={90}
+            min={100}
             max={200}
             onChange={(e) => {
               let sliderValue = e.target.value;

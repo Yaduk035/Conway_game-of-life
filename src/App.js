@@ -24,14 +24,14 @@ function App() {
 
   const RowLength = colwidth - colwidth / 2;
   const ColLength = colwidth;
-  const resolution = 1000;
+  const resolution = 1100;
   const cellSize = resolution / ColLength;
   const [running, setRunning] = useState(false);
   const runSpeed = 1000;
   const [speed, setSpeed] = useState(410);
   const [ranValue, setRanValue] = useState(6);
 
-  // console.log(running);
+  // console.log("cellsize: ", cellSize);
 
   const [grid, setGrid] = useState(() => {
     const rows = [];
@@ -166,7 +166,7 @@ function App() {
     <>
       <div className={!nightmode ? "light-mode" : "night-mode"}>
         <Header nightmode={toggleNightmode} currentmode={nightmode} />
-        <Container>
+        <Container maxWidth="xl">
           <br />
           <br />
           <div
@@ -177,9 +177,6 @@ function App() {
                 : "0 10px 25px rgba(0,0,0,0.5)",
 
               backgroundColor: "transparent",
-              // backgroundImage: nightmode
-              //   ? "linear-gradient(rgb(58, 5, 5), rgb(70, 69, 69)"
-              //   : "linear-gradient(rgb(250, 196, 196), rgb(226, 161, 161)",
             }}
           >
             <ControlPanel
@@ -199,9 +196,6 @@ function App() {
             className="grid"
             style={{
               gridTemplateColumns: `repeat(${ColLength},${cellSize + 2}px)`,
-              // backgroundImage: nightmode
-              //   ? "linear-gradient(rgb(32, 50, 68), rgb(68, 63, 63)"
-              //   : "linear-gradient(rgb(199, 189, 189), white)",
             }}
           >
             {grid.map((rows, i) =>
@@ -212,7 +206,6 @@ function App() {
                   style={{
                     width: cellSize,
                     height: cellSize,
-                    // border: nightmode ? "1px solid wheat" : "1px solid gray",
                     backgroundColor: grid[i][j]
                       ? !nightmode
                         ? "rgba(17, 17, 17, 0.9)"
@@ -222,15 +215,11 @@ function App() {
                     zIndex: grid[i][j] ? 2 : 1,
                     transition:
                       grid[i][j] && speed < 100
-                        ? "all 0.000001s"
+                        ? ""
                         : grid[i][j]
                         ? "all 0.09s"
                         : "all 0s",
-                    // cursor: "pointer",
-                    // boxShadow: "0 0.35em 0.7em rgba(17,17, 17, 0.5)",
                   }}
-                  // onMouseEnter={() => setHovered(true)}
-                  // onMouseLeave={() => setHovered(false)}
                   onClick={() => {
                     const newGrid = produce(grid, (gridCopy) => {
                       gridCopy[i][j] = grid[i][j] ? 0 : 1;
@@ -242,8 +231,8 @@ function App() {
             )}
           </div>
         </Container>
-        <br />
-        <br />
+        <br /> <br />
+        <br /> <br />
       </div>
     </>
   );

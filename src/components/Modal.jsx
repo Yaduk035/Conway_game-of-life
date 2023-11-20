@@ -29,6 +29,8 @@ export default function BasicModal({ openModal, handleModal, currentmode }) {
     p: 4,
     overFlow: "scroll",
     color: currentmode ? "white" : "black",
+    maxHeight: "90vh",
+    overflowY: "auto",
   };
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
@@ -40,7 +42,6 @@ export default function BasicModal({ openModal, handleModal, currentmode }) {
       setOpen(openModal);
     }
   }, [openModal]);
-  console.log(currentmode);
   return (
     <div>
       {/* <Button onClick={handleOpen}>Open modal</Button> */}

@@ -17,9 +17,6 @@ export default function DiscreteSlider({
   return (
     <>
       <Box sx={{ width: 300 }}>
-        {/* <Typography>
-        <span style={{ fontFamily: "monospace" }}>Speed</span>
-      </Typography> */}
         <Grid container spacing={0} alignItems="center">
           <Grid item>
             <Shuffle style={{ color: currentmode ? "wheat" : "" }} />
@@ -31,6 +28,7 @@ export default function DiscreteSlider({
               defaultValue={5}
               getAriaValueText={valuetext}
               valueLabelDisplay="auto"
+              valueLabelFormat={(value) => `Probability: ${value}`}
               step={1}
               marks
               min={1}

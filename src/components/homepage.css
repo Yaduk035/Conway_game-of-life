@@ -1,5 +1,5 @@
 .light-mode {
-  background-image: linear-gradient(rgb(236, 161, 161), gray);
+  background-image: linear-gradient(rgb(255, 212, 212), gray);
 }
 .night-mode {
   background-image: linear-gradient(rgb(20, 17, 31), rgb(43, 40, 40));
@@ -10,7 +10,7 @@
   border-radius: 20px;
   /* box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); */
   max-width: 1800px;
-  overflow: hidden;
+  overflow: auto;
   justify-content: center;
   display: grid;
   background-color: rgba(255, 254, 254, 0.445);

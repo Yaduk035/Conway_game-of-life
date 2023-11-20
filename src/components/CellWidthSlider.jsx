@@ -11,9 +11,6 @@ function valuetext(value) {
 export default function DiscreteSlider({ cellWidth, running, currentmode }) {
   return (
     <Box sx={{ width: 300 }}>
-      {/* <Typography>
-        <span style={{ fontFamily: "monospace" }}>Speed</span>
-      </Typography> */}
       <Grid container spacing={0} alignItems="center">
         <Grid item>
           <Grid3x3 style={{ color: currentmode ? "wheat" : "" }} />
@@ -26,10 +23,11 @@ export default function DiscreteSlider({ cellWidth, running, currentmode }) {
             defaultValue={30}
             getAriaValueText={valuetext}
             valueLabelDisplay="auto"
+            valueLabelFormat={(value) => `${value} x ${Math.ceil(value / 2)}  `}
             step={1}
             marks
             min={20}
-            max={45}
+            max={50}
             onChange={(e) => {
               cellWidth(e.target.value);
               // console.log(invertedValue * 10);
