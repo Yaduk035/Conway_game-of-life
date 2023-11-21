@@ -7,27 +7,18 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import DarkmodeButton from "./DarkmodeButton";
 import { GridView } from "@mui/icons-material";
 import Modal from "./Modal";
 import { HelpOutline } from "@mui/icons-material";
-import { Grid } from "@mui/material";
-
-const pages = ["Products", "Pricing", "Blog"];
 
 function ResponsiveAppBar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [openModal, setOpenModal] = React.useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
@@ -36,10 +27,6 @@ function ResponsiveAppBar(props) {
 
   const handleModal = (value) => {
     setOpenModal(value);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
@@ -110,11 +97,15 @@ function ResponsiveAppBar(props) {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem>
+                <Typography textAlign="center">
+                  {" "}
+                  <DarkmodeButton
+                    nightmode={props.nightmode}
+                    currentmode={props.currentmode}
+                  />
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <GridView sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />

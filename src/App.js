@@ -1,10 +1,10 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { produce } from "immer";
-import { Button, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import ControlPanel from "./components/ControlPanel";
-import InputSlider from "./components/SpeedSlider";
 import "./components/homepage.css";
 import Header from "./components/Header";
+import { borders } from "./components/Patterns";
 
 const operations = [
   [-1, -1],
@@ -16,10 +16,9 @@ const operations = [
   [1, 0],
   [1, 1],
 ];
-const defaultColWidth = 30;
+
 function App() {
   const [colwidth, setColwidth] = useState(30);
-  const [hovered, setHovered] = useState(false);
   const [nightmode, setNightmode] = useState(false);
 
   const RowLength = colwidth - colwidth / 2;
@@ -27,7 +26,6 @@ function App() {
   const resolution = 1100;
   const cellSize = resolution / ColLength;
   const [running, setRunning] = useState(false);
-  const runSpeed = 1000;
   const [speed, setSpeed] = useState(410);
   const [ranValue, setRanValue] = useState(6);
 
@@ -41,8 +39,8 @@ function App() {
     }
     return rows;
   });
-  // console.log(grid);
 
+  // console.log(grid);
   useEffect(() => {
     setGrid(() => {
       const rows = [];
@@ -65,7 +63,7 @@ function App() {
         for (let i = 0; i < RowLength; i++) {
           for (let j = 0; j < ColLength; j++) {
             let neighbours = 0;
-            operations.forEach(([x, y]) => {
+            borders.forEach(([x, y]) => {
               const newI = i + x;
               const newJ = j + y;
               if (
@@ -127,15 +125,18 @@ function App() {
       return rows;
     });
   };
-  const populateGrid = () => {
-    setGrid(() => {
-      const rows = [];
-
-      for (let i = 0; i < RowLength; i++) {
-        rows.push(Array.from(Array(ColLength), () => 1));
-      }
-      return rows;
-    });
+  const drawPatterns = (value) => {
+    cellWidthControl(50);
+    clearGrid();
+    setTimeout(() => {
+      setGrid((g) => {
+        return produce(g, (draw) => {
+          value.forEach(([x, y]) => {
+            draw[x][y] = 1;
+          });
+        });
+      });
+    }, [500]);
   };
 
   const startButton = () => {
@@ -150,9 +151,9 @@ function App() {
     setSpeed(value);
   };
 
-  const cellWidthControl = (value) => {
+  function cellWidthControl(value) {
     setColwidth(value);
-  };
+  }
 
   const toggleNightmode = (value) => {
     setNightmode(value);
@@ -161,7 +162,6 @@ function App() {
   const setRandomizevalue = (value) => {
     setRanValue(value);
   };
-
   return (
     <>
       <div className={!nightmode ? "light-mode" : "night-mode"}>
@@ -182,13 +182,15 @@ function App() {
             <ControlPanel
               speedControl={speedControl}
               speed={speed}
-              cellWidth={setColwidth}
+              cellWidth={cellWidthControl}
               running={running}
               currentmode={nightmode}
               ranValue={setRandomizevalue}
               randomizeButton={randomize}
               clearGrid={clearGrid}
               startButton={startButton}
+              currentWidth={colwidth}
+              drawPatterns={drawPatterns}
             />
           </div>
           <br />
