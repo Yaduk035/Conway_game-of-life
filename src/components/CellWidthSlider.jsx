@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Grid3x3 } from "@mui/icons-material";
 
 function valuetext(value) {

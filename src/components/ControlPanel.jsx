@@ -54,7 +54,10 @@ const ControlPanel = (props) => {
         >
           <Grid container>
             <Grid item>
-              <PatternMaker drawPatterns={props.drawPatterns} />
+              <PatternMaker
+                drawPatterns={props.drawPatterns}
+                currentmode={props.currentmode}
+              />
             </Grid>
           </Grid>
         </div>

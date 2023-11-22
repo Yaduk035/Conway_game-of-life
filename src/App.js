@@ -6,17 +6,6 @@ import "./components/homepage.css";
 import Header from "./components/Header";
 import { borders } from "./components/Patterns";
 
-const operations = [
-  [-1, -1],
-  [-1, 0],
-  [-1, 1],
-  [0, -1],
-  [0, 1],
-  [1, -1],
-  [1, 0],
-  [1, 1],
-];
-
 function App() {
   const [colwidth, setColwidth] = useState(30);
   const [nightmode, setNightmode] = useState(false);
