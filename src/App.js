@@ -166,6 +166,7 @@ function App() {
                 : "0 10px 25px rgba(0,0,0,0.5)",
 
               backgroundColor: "transparent",
+              textAlign: "center",
             }}
           >
             <ControlPanel

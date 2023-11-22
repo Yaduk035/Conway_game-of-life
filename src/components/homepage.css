@@ -7,7 +7,7 @@
 .grid {
   padding-top: 40px;
   padding-bottom: 40px;
-  border-radius: 20px;
+  border-radius: 0.6rem;
   /* box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); */
   max-width: 1800px;
   overflow: auto;
@@ -35,5 +35,7 @@
 .controls-div {
   /* box-shadow: 0 5px 20px rgba(0, 0, 0, 1); */
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 0.5rem;
+  max-width: 800px;
+  margin: auto;
 }

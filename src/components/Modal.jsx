@@ -93,6 +93,7 @@ export default function BasicModal({ openModal, handleModal, currentmode }) {
           <Typography id="modal-modal-title" variant="h5" component="h2">
             Patterns(Still life and oscillating)
           </Typography>
+
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <Box>
               <Grid>
